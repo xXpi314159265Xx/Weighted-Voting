@@ -33,16 +33,17 @@ def convert_to_number(list, dict):
 		number_list.append(dict[i])
 	return number_list
 
-def critical_players(list, quota, player_scores):
-	'''Takes a list of numbers, drops one at a time and checks
-	if the sum is greater or equal to the quota.
-	Returns dictionary with number of times each player is critcal.'''
-	for i in range(len(list)):
-		test_critical = list[i]
-		del list[i]
-		if sum(list) < quota:
-			player_scores[test_critical] += 1
-		list.insert(i, test_critical)	
+def critical_players(list, dict, quota, player_scores):
+	'''Takes a list of players of winning coalitions, a dictionary that converts players to their weights and drops one player at a time and checks if the sum is greater or equal to the quota. Returns dictionary with number of times each player is critical.'''
+	for i in list:
+		num_list = convert_to_number(i, dict)
+		for j in range(len(num_list)):
+			test_critical = num_list[j]
+			del num_list[j]
+			if sum(num_list) < quota:
+				player_scores[i[j]] += 1
+			num_list.insert(i, test_critical)
+	return player_scores
 		
 	
 a,b,c,d = get_data()
