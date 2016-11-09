@@ -42,16 +42,15 @@ def critical_players(list, dict, quota, player_scores):
 			del num_list[j]
 			if sum(num_list) < quota:
 				player_scores[i[j]] += 1
-			num_list.insert(i, test_critical)
+			num_list.insert(j, test_critical)
 	return player_scores
 		
 	
 a,b,c,d = get_data()
 best = winning_coalitions(a,b,c)
-sentence = " is a winning coaltion."
-for i in range(len(best)):
-	print(str(best[i]) + sentence)
-print(b)
-print(c)
-#def critical_players(list):
+#sentence = " is a winning coaltion."
+#for i in range(len(best)):
+#	print(str(best[i]) + sentence)
+
+print(critical_players(best,b,a,d))
 	
