@@ -44,13 +44,19 @@ def critical_players(list, dict, quota, player_scores):
 				player_scores[i[j]] += 1
 			num_list.insert(j, test_critical)
 	return player_scores
-		
 	
+def find_ratios(dict):
+	total_critical = sum(dict.values())
+	for i in range(1,len(dict)+1):
+		percent = dict["player " + str(i)]/total_critical * 100
+		print("Player %s has %i/%i, or %.2f percent of the power" %(i,dict["player " + str(i)],total_critical,percent))
+	return "Goodbye."
+
 a,b,c,d = get_data()
 best = winning_coalitions(a,b,c)
 #sentence = " is a winning coaltion."
 #for i in range(len(best)):
 #	print(str(best[i]) + sentence)
 
-print(critical_players(best,b,a,d))
-	
+player_scores = critical_players(best,b,a,d)
+print(find_ratios(player_scores))
