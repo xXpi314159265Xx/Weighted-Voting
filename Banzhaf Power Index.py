@@ -9,7 +9,7 @@ def get_data():
 	quota = int(input("What is the quota for your voting system?\n"))
 	number_of_players = int(input("How many players are in the system?\n"))
 	for i in range(number_of_players):
-		weight = int(input("What is the weight for player %s " %(i+1)))
+		weight = int(input("State the weight for player %s: " %(i+1)))
 		weights["player " + str(i+1)] = weight
 		player_score["player " + str(i+1)] = 0
 		player_list.append("player " + str(i+1))
@@ -55,12 +55,16 @@ def find_ratios(dict):
 	total_critical = sum(dict.values())
 	for i in range(1,len(dict)+1):
 		percent = dict["player " + str(i)]/total_critical * 100
-		print("Player %s has %i/%i, or %.2f percent of the power" %(i,dict["player " + str(i)],total_critical,percent))
+		print("Player %s has %i/%i, or %.2f%% of the power" %(i,dict["player " + str(i)],total_critical,percent))
 	return 
 
 def main():
 	'''Calculates the Banzhaf Power Distribution of a weighted
 	voting system.'''
+	print()
+	print("The Yaiko Banzhaf Power Distribution Calculator")
+	print("Version 2.3.3")
+	print()
 	quota,weights_dict,players_list,player_score_dict = get_data()
 	winners = winning_coalitions(quota,weights_dict,players_list)
 	sentence = " is a winning coaltion."
