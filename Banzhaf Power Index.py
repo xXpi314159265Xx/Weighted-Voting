@@ -1,6 +1,8 @@
 import itertools
 
 def get_data():
+	'''Gets user input to assign a quota, a dictionary of players and their weights,
+	a list of player names and a dictionary of player names assigned to their weights.'''
 	weights = {}
 	player_score = {}
 	player_list = []
@@ -14,6 +16,8 @@ def get_data():
 	return quota, weights, player_list, player_score
 
 def winning_coalitions(quota,weights,player_list):
+	'''Takes a quota, dictionary of players and their weights and a list of player names
+	and returns all a list of tuples of all possible winning coalitions.'''
 	s = player_list
 	winners = []
 	for i in range(1,len(s)+1):
@@ -46,6 +50,8 @@ def critical_players(list, dict, quota, player_scores):
 	return player_scores
 	
 def find_ratios(dict):
+	'''Takes a dictionary of players and number of time player is critical
+	and prints each players ratio and percent of power.'''
 	total_critical = sum(dict.values())
 	for i in range(1,len(dict)+1):
 		percent = dict["player " + str(i)]/total_critical * 100
@@ -53,14 +59,16 @@ def find_ratios(dict):
 	return 
 
 def main():
-	a,b,c,d = get_data()
-	best = winning_coalitions(a,b,c)
+	'''Calculates the Banzhaf Power Distribution of a weighted
+	voting system.'''
+	quota,weights_dict,players_list,player_score_dict = get_data()
+	winners = winning_coalitions(quota,weights_dict,players_list)
 	sentence = " is a winning coaltion."
 	print()
-	for i in range(len(best)):
-		print(str(best[i]) + sentence)
+	for i in range(len(winners)):
+		print(str(winners[i]) + sentence)
 	print()
-	player_scores = critical_players(best,b,a,d)
+	player_scores = critical_players(winners,weights_dict,quota,player_score_dict)
 	find_ratios(player_scores)
 	
 main()
