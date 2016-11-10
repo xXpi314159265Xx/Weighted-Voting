@@ -50,13 +50,17 @@ def find_ratios(dict):
 	for i in range(1,len(dict)+1):
 		percent = dict["player " + str(i)]/total_critical * 100
 		print("Player %s has %i/%i, or %.2f percent of the power" %(i,dict["player " + str(i)],total_critical,percent))
-	return "Goodbye."
+	return 
 
-a,b,c,d = get_data()
-best = winning_coalitions(a,b,c)
-#sentence = " is a winning coaltion."
-#for i in range(len(best)):
-#	print(str(best[i]) + sentence)
-
-player_scores = critical_players(best,b,a,d)
-print(find_ratios(player_scores))
+def main():
+	a,b,c,d = get_data()
+	best = winning_coalitions(a,b,c)
+	sentence = " is a winning coaltion."
+	print()
+	for i in range(len(best)):
+		print(str(best[i]) + sentence)
+	print()
+	player_scores = critical_players(best,b,a,d)
+	find_ratios(player_scores)
+	
+main()
