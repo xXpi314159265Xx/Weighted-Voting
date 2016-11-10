@@ -67,12 +67,13 @@ def main():
 	print()
 	quota,weights_dict,players_list,player_score_dict = get_data()
 	winners = winning_coalitions(quota,weights_dict,players_list)
-	sentence = " is a winning coaltion."
 	print()
+	print("WINNING COALTIONS")
 	for i in range(len(winners)):
-		print(str(winners[i]) + sentence)
+		print(str(winners[i]))
 	print()
 	player_scores = critical_players(winners,weights_dict,quota,player_score_dict)
+	print("BANZHAF POWER INDEX")
 	find_ratios(player_scores)
 	
 main()
