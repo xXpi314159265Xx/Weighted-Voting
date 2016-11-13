@@ -15,18 +15,12 @@ def get_data():
 		player_list.append("player " + str(i+1))
 	return quota, weights, player_list, player_score
 
-def winning_coalitions(quota,weights,player_list):
-	'''Takes a quota, dictionary of players and their weights and a list of player names
-	and returns all a list of tuples of all possible winning coalitions.'''
+def coalitions(player_list):
+	'''Takes a list of player names
+	and returns all a list of tuples of all possible coalitions.'''
 	s = player_list
-	winners = []
-	x = list(itertools.permutations(s,len(s)))
-	for j in range(len(x)):
-		check_list = convert_to_number(x[j],weights)
-		total = sum(check_list)
-		if total >= quota:
-			winners.append(x[j])
-	return winners
+	list_of_coalitions = list(itertools.permutations(s,len(s)))
+	return list_of_coalitions
 
 def convert_to_number(list, dict):
 	'''Takes list of players and uses dictionary to convert to a list
@@ -59,8 +53,6 @@ def find_ratios(dict):
 		print("Player %s has %i/%i, or %.2f%% of the power" %(i,dict["player " + str(i)],total_critical,percent))
 	return
 
-
-
 def main():
 	'''Calculates the Banzhaf Power Distribution of a weighted
 	voting system.'''
@@ -69,13 +61,13 @@ def main():
 	print("Version 1.1.3")
 	print()
 	quota, weights, player_list, player_score = get_data()
-	winners = winning_coalitions(quota, weights, player_list)
+	coalition = coalitions(player_list)
 	#print()
 	#print("WINNING COALTIONS")
 	#for i in range(len(winners)):
 	#	print(str(winners[i]))
 	#print()
-	player_scores_dict = critical_players(winners,weights,quota,player_score)
+	player_scores_dict = critical_players(coalition,weights,quota,player_score)
 	print("BANZHAF POWER INDEX")
 	find_ratios(player_scores_dict)
 
