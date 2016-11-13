@@ -60,7 +60,7 @@ def main():
 	voting system.'''
 	print()
 	print("The Yaiko Shapley-Shubik Power Distribution Calculator")
-	print("Version 1.1.3")
+	print("Version 1.1.7")
 	print()
 	quota, weights, player_list, player_score = get_data()
 	coalition = coalitions(player_list)
@@ -72,6 +72,5 @@ def main():
 	print()
 	print("BANZHAF POWER INDEX")
 	find_ratios(player_scores_dict)
-	print(pivotal_list)
 
 main()
