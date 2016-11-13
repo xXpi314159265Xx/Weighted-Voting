@@ -30,8 +30,8 @@ def convert_to_number(list, dict):
 		number_list.append(dict[i])
 	return number_list
 
-def critical_players(list, dict, quota, player_scores):
-	'''Takes a list of players of winning coalitions, a dictionary that converts players to their weights and drops one player at a time and checks if the sum is greater or equal to the quota. Returns dictionary with number of times each player is critical.'''
+def pivotal_players(list, dict, quota, player_scores):
+	'''Takes a list of coalitions, a dictionary that converts players to their weights and finds the pivotal player. Returns dictionary with number of times each player is pivotal.'''
 	total = 0
 	for i in list:
 		num_list = convert_to_number(i, dict)
@@ -67,7 +67,7 @@ def main():
 	#for i in range(len(winners)):
 	#	print(str(winners[i]))
 	#print()
-	player_scores_dict = critical_players(coalition,weights,quota,player_score)
+	player_scores_dict = pivotal_players(coalition,weights,quota,player_score)
 	print("BANZHAF POWER INDEX")
 	find_ratios(player_scores_dict)
 
