@@ -38,7 +38,7 @@ def convert_to_number(list, dict):
 
 def critical_players(list, dict, quota, player_scores):
 	'''Takes a list of players of winning coalitions, a dictionary that converts players to their weights and drops one player at a time and checks if the sum is greater or equal to the quota. Returns dictionary with number of times each player is critical.'''
-    beginning = 0
+	total = 0
 	for i in list:
 		num_list = convert_to_number(i, dict)
 		for j in range(len(num_list)):
@@ -46,7 +46,8 @@ def critical_players(list, dict, quota, player_scores):
 			total += test_critical
 			if total >= quota:
 				player_scores[i[j]] += 1
-        beginning = 0
+				total = 0
+				break
 	return player_scores
 
 def find_ratios(dict):
