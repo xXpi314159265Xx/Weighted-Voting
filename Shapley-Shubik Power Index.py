@@ -46,7 +46,7 @@ def critical_players(list, dict, quota, player_scores):
 			total += test_critical
 			if total >= quota:
 				player_scores[i[j]] += 1
-                beginning = 0
+        beginning = 0
 	return player_scores
 
 def find_ratios(dict):
