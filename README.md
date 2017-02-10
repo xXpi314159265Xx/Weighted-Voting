@@ -1,3 +1,7 @@
+## GUI 
+
+Began working on adding gui to Banzhaf Power Index using John Zelle's graphics.py on 2/10/17. banzhaf power index graphics.py is incomplete.
+
 ## Weighted Voting
 
 This repository takes a weighted voting system and produces either the Banzhaf Power Index or the Shapley-Shubik Power Index.
